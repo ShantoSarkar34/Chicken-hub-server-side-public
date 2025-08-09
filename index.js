@@ -70,22 +70,21 @@ async function run() {
     app.put("/all-foods/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: id };
-      const user = req.body;
+      const food = req.body;
       const updatedInfo = {
         $set: {
-          foodName: user.foodName,
-          foodPhoto: user.foodPhoto,
-          expireDate: user.expireDate,
-          description: user.description,
-          quantity: user.quantity,
-          currentDate: user.currentDate,
-          category: user.category,
+          foodName: food.foodName,
+          foodPhoto: food.foodPhoto,
+          expireDate: food.expireDate,
+          description: food.description,
+          quantity: food.quantity,
+          currentDate: food.currentDate,
+          category: food.category,
         },
       };
       const result = await usersCollection.updateOne(filter, updatedInfo);
       res.send(result);
       console.log(result);
-      
     });
 
     app.delete("/all-foods/:id", async (req, res) => {
