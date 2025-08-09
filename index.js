@@ -42,14 +42,16 @@ async function run() {
         const today = new Date();
         const fiveDaysFromNow = new Date();
         fiveDaysFromNow.setDate(today.getDate() + 5);
-        const nearlyExpired = allFoods.filter((food) => {
+        const result = allFoods.filter((food) => {
           const exp = new Date(food.expireDate);
           return exp >= today && exp <= fiveDaysFromNow;
         });
-        res.send(nearlyExpired);
+        res.send(result);
       } catch (error) {
         res.status(500).send({ error: "Failed to fetch nearly expired foods" });
       }
+      console.log(result);
+      
     });
 
     app.get("/my-items", async (req, res) => {
