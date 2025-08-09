@@ -69,7 +69,7 @@ async function run() {
 
     app.put("/all-foods/:id", async (req, res) => {
       const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
+      const filter = { _id: id };
       const user = req.body;
       const updatedInfo = {
         $set: {
@@ -84,6 +84,8 @@ async function run() {
       };
       const result = await usersCollection.updateOne(filter, updatedInfo);
       res.send(result);
+      console.log(result);
+      
     });
 
     app.delete("/all-foods/:id", async (req, res) => {
