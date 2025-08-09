@@ -50,8 +50,6 @@ async function run() {
       } catch (error) {
         res.status(500).send({ error: "Failed to fetch nearly expired foods" });
       }
-      console.log(result);
-      
     });
 
     app.get("/my-items", async (req, res) => {
@@ -86,7 +84,6 @@ async function run() {
       };
       const result = await usersCollection.updateOne(filter, updatedInfo);
       res.send(result);
-      console.log(result);
     });
 
     app.delete("/all-foods/:id", async (req, res) => {
